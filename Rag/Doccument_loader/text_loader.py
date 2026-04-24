@@ -1,3 +1,5 @@
+import os
+
 from langchain_community.document_loaders import TextLoader
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.output_parsers import StrOutputParser
@@ -14,7 +16,9 @@ prompt = PromptTemplate(
 
 parser = StrOutputParser()
 
-loader = TextLoader('cricket.txt', encoding='utf-8')
+base_dir = os.path.dirname(__file__)
+text_path = os.path.join(base_dir, 'cricket.txt')
+loader = TextLoader(text_path, encoding='utf-8')
 
 docs = loader.load()
 
